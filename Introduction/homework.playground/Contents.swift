@@ -5,9 +5,12 @@ import XCTest
  */
 
 func middle(_ array: [Int]) -> Int? {
-    // TODO: - Put your code here
     
-    return nil
+    if array.isEmpty {
+        return nil
+    }
+    
+    return array[(array.count - 1) / 2]
 }
 
 /* Merge dictionaries
@@ -15,9 +18,10 @@ func middle(_ array: [Int]) -> Int? {
  */
 
 func merging(_ dict1: [String: String], with dict2: [String: String]) -> [String: String] {
-    // TODO: - Put your code here
     
-    return [:]
+    let result = dict1.merging(dict2, uniquingKeysWith: { (_, last) in last})
+    
+    return result
 }
 
 
@@ -25,7 +29,11 @@ func merging(_ dict1: [String: String], with dict2: [String: String]) -> [String
  */
 
 func repeatTask(times: Int, task: () -> Void) {
-    /* the function should run the task closure, times number of times. Use this function to print "Winter is coming" 10 times. */
+    if times >= 1 {
+    for _ in 1...times {
+        task()
+    }
+    }
 }
 
 /* Write a function which takes a string and returns a version of it with each individual word reversed.
@@ -34,9 +42,13 @@ func repeatTask(times: Int, task: () -> Void) {
  */
 
 func reverseWords(_ string: String) -> String {
-    // TODO: - Your code goes here
     
-    return ""
+    let result = String(string.reversed())
+        .components(separatedBy: .whitespaces)
+        .reversed()
+        .joined(separator: " ")
+    
+    return result
 }
 
 /* psst ... a method exists on a string named components(separatedBy:) that will split the string into chunks, which are delimited by the given string, and return an array containing the results.
