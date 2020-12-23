@@ -25,6 +25,9 @@ DerivedData/
 ## Obj-C/Swift specific
 *.hmap
 
+# Finder metadata
+.DS_Store
+
 ## App packaging
 *.ipa
 *.dSYM.zip
