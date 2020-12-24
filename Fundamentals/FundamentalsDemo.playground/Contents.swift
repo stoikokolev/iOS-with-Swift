@@ -161,7 +161,7 @@ Math.factorial(of: 6)
 Math.primeFactors(of: 81)
 
 //classes demo -- class is reference type / struct is value type
-class Person {
+class Person: CustomStringConvertible {
     var firstName: String
     var lastName: String
     
@@ -169,7 +169,79 @@ class Person {
         self.firstName = firstName
         self.lastName = lastName
     }
-
+    
+    var description: String {
+        "\(firstName) \(lastName)"
+    }
 }
 
 let person = Person(firstName: "Stoyko", lastName: "Kolev")
+let person2 = person
+
+person.firstName = "Stoiko"
+print(person2.firstName)
+
+// "===" is equivalent to equals(c#)
+person === person2
+
+//inheritance demo
+struct Grade {
+    var letter: Character
+    var points: Double
+    var credits: Double
+}
+
+let grade = Grade(letter: "a", points: 2.2, credits: 2.1)
+let grades = [grade]
+
+class Student: Person {
+    var grades: [Grade] = []
+    
+    //init inheritance
+    init(firstName: String, lastName: String, grades: [Grade]) {
+        self.grades = grades
+        super.init(firstName: firstName, lastName: lastName)
+    }
+    //AutomaticReferenceCounting (garbage collector in c#) demo
+    deinit {
+        print("\(firstName) \(lastName) was just deinitialized!")
+    }
+}
+
+var student4: Student? = Student(firstName: "Annie", lastName: "Jones", grades: grades)
+//print deinitializer when student4 = nil
+student4 = nil
+
+class BandMember: Student {
+    var minimumPractise = 2
+}
+
+class OboePlayer: BandMember {
+    override var minimumPractise: Int {
+        get {
+            super.minimumPractise * 2
+        } set {
+            super.minimumPractise = newValue / 2
+        }
+    }
+}
+
+//polymorphism demo
+func phonebookName(_ person: Person) {
+    print("\(person.description)")
+}
+
+let person1 = Person(firstName: "Jon", lastName: "Snow")
+let oboePlayer = OboePlayer(firstName: "Annie", lastName: "Wilson", grades: grades)
+
+phonebookName(person1)
+phonebookName(oboePlayer)
+
+var hallMonitor = Student(firstName: "Ben", lastName: "Kenobi", grades: grades)
+hallMonitor = oboePlayer
+
+// with "as" we cast types - failing will return error; "as?" optional cast; "as!" if it fails program will crash
+if let hallMonitor = hallMonitor as? BandMember {
+    print("This hall monitor is a band member and practises minimum as least \(hallMonitor.minimumPractise) times a week")
+}
+
