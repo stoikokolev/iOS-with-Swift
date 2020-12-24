@@ -26,7 +26,6 @@ struct DeliveryArea: CustomStringConvertible {   //This protocol allows us to cr
         radius: \(radius)
         """
     }
-    
 }
 
 let storeLocation = Location(x: 2, y: 4) //initialize instantion of Location
@@ -245,3 +244,69 @@ if let hallMonitor = hallMonitor as? BandMember {
     print("This hall monitor is a band member and practises minimum as least \(hallMonitor.minimumPractise) times a week")
 }
 
+//enumerations demo
+enum Month: Int, CaseIterable {
+    case january = 1, february = 2, march = 3
+}
+
+func semester(for month: Month) -> String {
+    switch month {
+    case Month.january:
+        return "Early winter"
+    //short syntax -> Month.february === .february
+    case .february, .march:
+        return"Mid winter"
+    }
+}
+
+//enum -> int with keyword rawValue
+func monthsRawValueDemo(month: Month) -> Int {
+    month.rawValue
+}
+
+//CaseIterable demo
+let monthArray = Month.allCases
+
+monthsRawValueDemo(month: Month.january)
+
+var balance = 5000
+
+//Associated Types -> each case can have custom value
+enum WithdrawalResult {
+    case success(newBalance: Int)
+    case error(message: String)
+}
+
+func withdraw(_ amount: Int) -> WithdrawalResult {
+    if amount <= balance {
+        balance -= amount
+        return .success(newBalance: balance)
+    } else {
+        return .error(message: "Not enough money!")
+    }
+}
+
+withdraw(1000)
+withdraw(4500)
+
+//Protocols -> Interfaces(C#)
+//Protocols can declare initializers(constructors)
+
+protocol Vehicle {
+    func stop() -> String
+}
+
+protocol WheeledVehicle {
+    var numberOfWheels: Int { get }
+}
+
+struct Bike: WheeledVehicle {
+    var numberOfWheels: Int = 2
+}
+
+//we add functionality(another protocol) using "extension" keyword
+extension Bike: Vehicle {
+    func stop() -> String {
+        "Stopped"
+    }
+}
