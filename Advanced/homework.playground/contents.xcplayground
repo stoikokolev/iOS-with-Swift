@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<playground version='6.0' target-platform='ios'>
+    <pages>
+        <page name='00. Break the Cycle'/>
+        <page name='01. Break Another Cycle'/>
+        <page name='02. Stack'/>
+        <page name='03. Protocol Extension Practice'/>
+    </pages>
+</playground>
