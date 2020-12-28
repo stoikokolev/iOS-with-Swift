@@ -49,6 +49,17 @@ class ViewController: UIViewController {
         } else {
             title = "Not even close!"
         }
+
+        if (score >= 99999 || round >= 999) {
+            let winAlert = UIAlertController(title: "Winner", message: "You beat the game!", preferredStyle: .alert)
+            let winalertAction = UIAlertAction(title: "OK", style: .default) {
+                //to update scores and slider after close the alert
+                [weak self] _ in
+                self?.startOver()
+            }
+            winAlert.addAction(winalertAction)
+            present(winAlert, animated: true)
+        }
         
         let alert = UIAlertController(title: title, message:
                                         """
