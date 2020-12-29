@@ -1,8 +1,8 @@
 //
 //  AppDelegate.swift
-//  ChecklistDemoProject
+//  ChecklistDemo
 //
-//  Created by Stoyko Kolev on 29.12.20.
+//  Created by Stoyko Kolev on 28.12.20.
 //
 
 import UIKit
