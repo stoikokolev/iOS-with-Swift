@@ -1,8 +1,8 @@
 //
 //  Checklist.swift
-//  ChecklistDemo
+//  Checklist
 //
-//  Created by Stoyko Kolev on 28.12.20.
+//  Created by Stoyko Kolev on 23.09.20.
 //
 
 import Foundation
@@ -22,5 +22,11 @@ class Checklist: Codable {
         }
         
         return count
+    }
+}
+
+extension Checklist: Equatable {
+    static func == (lhs: Checklist, rhs: Checklist) -> Bool {
+        lhs.name == rhs.name && lhs.checklistItems == rhs.checklistItems
     }
 }
