@@ -9,6 +9,10 @@ SoftUni Course
 <div>
    <img height="480" align="left" src="https://raw.githubusercontent.com/stoikokolev/iOS-with-Swift/main/05-iOS%20Essentials/ChecklistDemo/ChecklistDemo/Assets.xcassets/ChecklistScreenShot.png"/>
 </div>
+<img height="480" align="left" src="https://raw.githubusercontent.com/stoikokolev/iOS-with-Swift/main/05-iOS%20Essentials/ChecklistDemo/ChecklistDemo/Assets.xcassets/ChecklistScreenShot1.png"/>
+</div>
+<img height="480" align="left" src="https://raw.githubusercontent.com/stoikokolev/iOS-with-Swift/main/05-iOS%20Essentials/ChecklistDemo/ChecklistDemo/Assets.xcassets/ChecklistScreenShot2.png"/>
+</div>
 <div>
   <img height="320" align="left" src="https://raw.githubusercontent.com/stoikokolev/iOS-with-Swift/main/04-Introduction%20IUKit/BullsEyeDemoProject/BullsEyeDemoProject/Assets.xcassets/BullsEyeScreenShot.png"/>
   </div>
