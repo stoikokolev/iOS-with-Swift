@@ -28,6 +28,10 @@ class CurrentLocationViewController: UIViewController {
     var lastLocationError: Error?
     
     // TODO: - Add Reverse Geocoding properties
+    let geocoder = CLGeocoder()
+    var placemark: CLPlacemark?
+    var performingReverseGeocoding = false
+    var lastGeocodingError: Error?
     
     // TODO: - Add CoreData
     
@@ -91,10 +95,16 @@ class CurrentLocationViewController: UIViewController {
         if logoVisible {
             hideLogoView()
         }
+        
         // TODO: - Start/Stop location manager
-        locationManager.delegate = self
-        locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
-        locationManager.startUpdatingLocation()
+        if updatingLocation {
+            stopLocationManager()
+        } else {
+            location = nil
+            lastLocationError = nil
+            startLocationManager()
+        }
+        
     }
     
     // MARK:- Helper Methods
@@ -118,11 +128,43 @@ class CurrentLocationViewController: UIViewController {
             longitudeLabel.text = String(format: "%.8f", location.coordinate.longitude)
             tagButton.isHidden = false
             messageLabel.text = ""
+            
+            if let placemark = placemark {
+                addressLabel.text =
+                        """
+                        \(placemark.subThoroughfare ?? "") \(placemark.thoroughfare ?? "")
+                        \(placemark.locality ?? "") \(placemark.administrativeArea ?? "") \(placemark.postalCode ?? "")
+                        """
+            } else if performingReverseGeocoding {
+                addressLabel.text = "Still Searching ..."
+            } else if lastGeocodingError != nil {
+                addressLabel.text = "Error Finding Address"
+            } else {
+                addressLabel.text = "No Address Found"
+            }
         } else {
             latitudeLabel.text = ""
             longitudeLabel.text = ""
             addressLabel.text = ""
             tagButton.isHidden = true
+            
+            let statusMessage: String
+            if let error = lastLocationError as NSError? {
+                if error.domain == kCLErrorDomain && error.code == CLError.denied.rawValue {
+                    statusMessage = "Location Services Disabled"
+                } else {
+                    statusMessage = "Error Getting Location"
+                }
+            } else if !CLLocationManager.locationServicesEnabled() {
+                    statusMessage = "Location Service Disabled"
+            } else if updatingLocation {
+                statusMessage = "Searching ..."
+            } else {
+                statusMessage = ""
+                showLogoView()
+            }
+            
+            messageLabel.text = statusMessage
         }
         
         setupGetButton()
@@ -130,14 +172,32 @@ class CurrentLocationViewController: UIViewController {
     
     private func setupGetButton() {
         // TODO: - Setup Button's Title
+        if updatingLocation {
+            getButton.setTitle("Stop", for: .normal)
+        } else {
+            getButton.setTitle("Get My Location", for: .normal)
+        }
     }
     
     private func startLocationManager() {
         // TODO: - Start Location manager if enabled
+        if CLLocationManager.locationServicesEnabled() {
+            locationManager.delegate = self
+            locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters
+            locationManager.startUpdatingLocation()
+            updatingLocation = true
+            updateLabels()
+        }
     }
     
     private func stopLocationManager() {
         // TODO: - Stop Location manager
+        if updatingLocation {
+            locationManager.stopUpdatingLocation()
+            locationManager.delegate = nil
+            updatingLocation = false
+            updateLabels()
+        }
     }
 }
 
@@ -150,6 +210,28 @@ extension CurrentLocationViewController: CLLocationManagerDelegate {
         lastLocationError = nil
         
         updateLabels()
+        
+        if !performingReverseGeocoding {
+            print("Starting Reverse Geocoding ...")
+            performingReverseGeocoding = true
+            
+            geocoder.reverseGeocodeLocation(newLocation) {
+                placemarks, error in
+                
+                if let error = error {
+                    print("Found Error: \(error)")
+                    return
+                }
+                
+                if let places = placemarks {
+                    print("Found Places: \(places)")
+                    self.placemark = places.last
+                }
+                
+                self.performingReverseGeocoding = false
+                self.stopLocationManager()
+            }
+        }
     }
     
     func locationManager(_ manager: CLLocationManager, didFailWithError error: Error) {
