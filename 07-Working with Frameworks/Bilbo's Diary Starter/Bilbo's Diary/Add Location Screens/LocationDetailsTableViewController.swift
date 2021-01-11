@@ -25,8 +25,7 @@ class LocationDetailsTableViewController: UITableViewController {
     @IBOutlet weak var addressLabel: UILabel!
     @IBOutlet weak var dateLabel: UILabel!
     
-    var coordinate = CLLocationCoordinate2D(latitude: 0,
-                                            longitude: 0)
+    var coordinate = CLLocationCoordinate2D(latitude: 0, longitude: 0)
     var placemark: CLPlacemark?
     var categoryName = "On an Adventure"
     
@@ -36,19 +35,26 @@ class LocationDetailsTableViewController: UITableViewController {
     var date = Date()
     
     // TODO: - Inject managedObjectContext
+    var managedObjectContext: NSManagedObjectContext!
+    var locationToEdit: Location?
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        
         // TODO: - Change title if editing
- 
+        if let location = locationToEdit {
+            title = "Edit Location"
+            descriptionText = location.descriptionText
+            categoryName = location.category
+            coordinate = CLLocationCoordinate2D(latitude: location.latitude, longitude: location.longitude)
+            placemark = location.placemark
+            date = location.date
+        }
         descriptionTextView.text = descriptionText ?? ""
         categoryLabel.text = categoryName
-        
-        latitudeLabel.text = String(format: "%.8f",
-                                    coordinate.latitude)
-        longitudeLabel.text = String(format: "%.8f",
-                                     coordinate.longitude)
+        latitudeLabel.text = String(format: "%.8f", coordinate.latitude)
+        longitudeLabel.text = String(format: "%.8f", coordinate.longitude)
         
         if let placemark = placemark {
             addressLabel.text = """
@@ -58,7 +64,6 @@ class LocationDetailsTableViewController: UITableViewController {
         } else {
             addressLabel.text = "No Address Found"
         }
-        
         
         dateLabel.text = format(date: date)
     }
@@ -76,10 +81,27 @@ class LocationDetailsTableViewController: UITableViewController {
     // MARK:- Actions
     @IBAction func done() {
         // TODO: - Create object
-
+        let location: Location
+        if let temp = locationToEdit {
+            location = temp
+        } else {
+            location = Location(context: managedObjectContext)
+        }
         // TODO: - Set properties to object
-
+        location.descriptionText = descriptionText ?? ""
+        location.category = categoryName
+        location.latitude = coordinate.latitude
+        location.longitude = coordinate.longitude
+        location.date = date
+        location.placemark = placemark
+        
         // TODO: - Add logic for saving in CoreData
+        do {
+            try managedObjectContext.save()
+            self.navigationController?.popViewController(animated: true)
+        } catch {
+            fatalError("Error: \(error)")
+        }
     }
     
     @IBAction func cancel() {

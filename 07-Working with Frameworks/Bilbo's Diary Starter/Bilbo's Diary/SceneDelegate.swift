@@ -32,6 +32,22 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         customizeAppearance()
         
         // TODO: - Implement Dependency Injection for managedObjectContext
+        let tabBarController = window!.rootViewController as! UITabBarController
+       
+        // first item
+        let firstNavigationController = tabBarController.viewControllers![0] as! UINavigationController
+        let controller = firstNavigationController.viewControllers[0] as! CurrentLocationViewController
+        controller.managedObjectContext = managedObjectContext
+        
+        // second item
+        let secondNavigationController = tabBarController.viewControllers![1] as! UINavigationController
+        let locationsController = secondNavigationController.viewControllers[0] as! LocationsViewController
+        locationsController.managedObjectContext = managedObjectContext
+        
+        // third item
+        let thirdNavigationController = tabBarController.viewControllers![2] as! UINavigationController
+        let mapsController = thirdNavigationController.viewControllers[0] as! MapViewController
+        mapsController.managedObjectContext = managedObjectContext
     }
     
     func customizeAppearance() {
@@ -44,6 +60,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
                 UIFont(name: "RingbearerMedium", size: 18.0) ?? .systemFont(ofSize: 16)]
         
         // TODO: - Implement appearance for tab bar
+        UITabBar.appearance().barTintColor = UIColor(named: "NavigationColor")
+        UITabBar.appearance().tintColor = UIColor(named: "ButtonColor")
+        
     }
 }
 

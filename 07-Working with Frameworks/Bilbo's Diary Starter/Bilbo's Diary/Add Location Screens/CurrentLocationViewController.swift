@@ -34,7 +34,7 @@ class CurrentLocationViewController: UIViewController {
     var lastGeocodingError: Error?
     
     // TODO: - Add CoreData
-    
+    var managedObjectContext: NSManagedObjectContext!
     
     var logoVisible = false
     
@@ -74,6 +74,9 @@ class CurrentLocationViewController: UIViewController {
             let controller = segue.destination
                 as! LocationDetailsTableViewController
             // TODO: - Inject properties here
+            controller.coordinate = location!.coordinate
+            controller.placemark = placemark
+            controller.managedObjectContext = managedObjectContext
         }
     }
     

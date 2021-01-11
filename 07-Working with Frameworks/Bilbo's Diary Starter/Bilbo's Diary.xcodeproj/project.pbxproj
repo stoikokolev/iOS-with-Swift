@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		DD85C25325AB8404004D4C09 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25125AB8404004D4C09 /* DataModel.xcdatamodeld */; };
+		DD85C25725AB8586004D4C09 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25525AB8586004D4C09 /* Location+CoreDataClass.swift */; };
+		DD85C25825AB8586004D4C09 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25625AB8586004D4C09 /* Location+CoreDataProperties.swift */; };
 		E046A38825306737007DD96B /* LocationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046A38725306737007DD96B /* LocationTableViewCell.swift */; };
 		E046A38C2530C67E007DD96B /* LocationsTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E046A38B2530C67E007DD96B /* LocationsTableViewController.swift */; };
 		E046A3932530D33C007DD96B /* MapKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E046A3922530D33C007DD96B /* MapKit.framework */; };
@@ -24,6 +27,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		DD85C25225AB8404004D4C09 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
+		DD85C25525AB8586004D4C09 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
+		DD85C25625AB8586004D4C09 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		E046A38725306737007DD96B /* LocationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationTableViewCell.swift; sourceTree = "<group>"; };
 		E046A38B2530C67E007DD96B /* LocationsTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocationsTableViewController.swift; sourceTree = "<group>"; };
 		E046A3922530D33C007DD96B /* MapKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MapKit.framework; path = System/Library/Frameworks/MapKit.framework; sourceTree = SDKROOT; };
@@ -100,6 +106,8 @@
 		E0DF9B4D251FF0710049E3A2 = {
 			isa = PBXGroup;
 			children = (
+				DD85C25525AB8586004D4C09 /* Location+CoreDataClass.swift */,
+				DD85C25625AB8586004D4C09 /* Location+CoreDataProperties.swift */,
 				E0DF9B58251FF0710049E3A2 /* Bilbo's Diary */,
 				E0DF9B57251FF0710049E3A2 /* Products */,
 				E046A3912530D33C007DD96B /* Frameworks */,
@@ -128,6 +136,7 @@
 				E0855BE5252E926200B39C5F /* RINGM___.TTF */,
 				E0DF9B59251FF0710049E3A2 /* AppDelegate.swift */,
 				E0DF9B5B251FF0710049E3A2 /* SceneDelegate.swift */,
+				DD85C25125AB8404004D4C09 /* DataModel.xcdatamodeld */,
 			);
 			path = "Bilbo's Diary";
 			sourceTree = "<group>";
@@ -206,11 +215,14 @@
 			files = (
 				E046A3AB25332043007DD96B /* MapViewController.swift in Sources */,
 				E046A38C2530C67E007DD96B /* LocationsTableViewController.swift in Sources */,
+				DD85C25825AB8586004D4C09 /* Location+CoreDataProperties.swift in Sources */,
 				E0DF9B5E251FF0710049E3A2 /* CurrentLocationViewController.swift in Sources */,
 				E0855BDC252E776B00B39C5F /* LocationDetailsTableViewController.swift in Sources */,
 				E0DF9B5A251FF0710049E3A2 /* AppDelegate.swift in Sources */,
 				E046A38825306737007DD96B /* LocationTableViewCell.swift in Sources */,
+				DD85C25325AB8404004D4C09 /* DataModel.xcdatamodeld in Sources */,
 				E0855BE1252E837400B39C5F /* CategoryPickerTableViewController.swift in Sources */,
+				DD85C25725AB8586004D4C09 /* Location+CoreDataClass.swift in Sources */,
 				E0DF9B5C251FF0710049E3A2 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -417,6 +429,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		DD85C25125AB8404004D4C09 /* DataModel.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				DD85C25225AB8404004D4C09 /* DataModel.xcdatamodel */,
+			);
+			currentVersion = DD85C25225AB8404004D4C09 /* DataModel.xcdatamodel */;
+			path = DataModel.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = E0DF9B4E251FF0710049E3A2 /* Project object */;
 }
