@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9A92CCAE268CDEF300B7A80E /* test.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9A92CCAD268CDEF300B7A80E /* test.swift */; };
 		DD85C25325AB8404004D4C09 /* DataModel.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25125AB8404004D4C09 /* DataModel.xcdatamodeld */; };
 		DD85C25725AB8586004D4C09 /* Location+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25525AB8586004D4C09 /* Location+CoreDataClass.swift */; };
 		DD85C25825AB8586004D4C09 /* Location+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = DD85C25625AB8586004D4C09 /* Location+CoreDataProperties.swift */; };
@@ -27,6 +28,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		9A92CCAD268CDEF300B7A80E /* test.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = test.swift; sourceTree = "<group>"; };
 		DD85C25225AB8404004D4C09 /* DataModel.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = DataModel.xcdatamodel; sourceTree = "<group>"; };
 		DD85C25525AB8586004D4C09 /* Location+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataClass.swift"; sourceTree = "<group>"; };
 		DD85C25625AB8586004D4C09 /* Location+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Location+CoreDataProperties.swift"; sourceTree = "<group>"; };
@@ -73,6 +75,14 @@
 			children = (
 			);
 			path = dsa;
+			sourceTree = "<group>";
+		};
+		9A92CCAC268CDEE400B7A80E /* dd */ = {
+			isa = PBXGroup;
+			children = (
+				9A92CCAD268CDEF300B7A80E /* test.swift */,
+			);
+			path = dd;
 			sourceTree = "<group>";
 		};
 		E046A37D25305E8B007DD96B /* Add Location Screens */ = {
@@ -140,6 +150,7 @@
 		E0DF9B58251FF0710049E3A2 /* Bilbo's Diary */ = {
 			isa = PBXGroup;
 			children = (
+				9A92CCAC268CDEE400B7A80E /* dd */,
 				9A92CCAA268CDD9200B7A80E /* asd */,
 				E046A3972531C745007DD96B /* Sound */,
 				E046A37D25305E8B007DD96B /* Add Location Screens */,
@@ -230,6 +241,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				E046A3AB25332043007DD96B /* MapViewController.swift in Sources */,
+				9A92CCAE268CDEF300B7A80E /* test.swift in Sources */,
 				E046A38C2530C67E007DD96B /* LocationsTableViewController.swift in Sources */,
 				DD85C25825AB8586004D4C09 /* Location+CoreDataProperties.swift in Sources */,
 				E0DF9B5E251FF0710049E3A2 /* CurrentLocationViewController.swift in Sources */,
